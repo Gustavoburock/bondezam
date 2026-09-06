@@ -1,8 +1,11 @@
-import { motion } from 'motion/react';
-import { Sparkles, Check, MessageSquare } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Sparkles, MessageSquare, Maximize2, X } from 'lucide-react';
 import { SERVICES } from '../data';
 
 export default function ServicesList() {
+  const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; title: string; price: number } | null>(null);
+
   const getWhatsAppLink = (serviceName: string, price: number) => {
     const formattedPrice = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     const text = `Olá Bondezan! Gostaria de agendar o procedimento de ${serviceName} no valor de ${formattedPrice}. Quais são os próximos horários disponíveis?`;
@@ -27,7 +30,7 @@ export default function ServicesList() {
               <span className="italic font-normal text-brand-rose font-serif">de Alto Padrão</span>
             </h2>
             <p className="text-sm md:text-base text-brand-nude/70 font-light leading-relaxed">
-              Mapeamento milimétrico, fios ultraleves tecnológicos e respeito absoluto à saúde dos seus fios naturais. Escolha o efeito ideal para o seu estilo:
+              Mapeamento milimétrico, fios ultraleves tecnológicos e cuidado absoluto com a saúde dos seus fios naturais. Encontre o efeito perfeito para o seu olhar, com manutenção de 15–20 dias ou a possibilidade de prolongar a durabilidade por mais de 30 dias através do método Capping.
             </p>
           </div>
           
@@ -51,14 +54,18 @@ export default function ServicesList() {
             >
               {/* Photo preview header */}
               {service.imageSrc && (
-                <div className="relative w-full aspect-[16/10] overflow-hidden bg-brand-black">
+                <div 
+                  onClick={() => setSelectedPhoto({ src: service.imageSrc, title: service.name, price: service.price })}
+                  className="relative w-full aspect-[3/4] overflow-hidden bg-brand-black cursor-pointer group/img"
+                  title="Clique para ver a foto completa"
+                >
                   <img
                     src={service.imageSrc}
                     alt={service.imageAlt}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90 group-hover:brightness-100"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-95 group-hover:brightness-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black-light via-transparent to-transparent opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black-light via-transparent to-transparent opacity-80 pointer-events-none" />
                   
                   {/* Badge if available */}
                   {service.badge && (
@@ -66,6 +73,11 @@ export default function ServicesList() {
                       {service.badge}
                     </div>
                   )}
+
+                  {/* Expand button hint */}
+                  <div className="absolute top-3 left-3 bg-brand-black/80 backdrop-blur-md p-1.5 rounded-full border border-brand-rose/30 text-brand-rose opacity-0 group-hover/img:opacity-100 transition-opacity duration-300">
+                    <Maximize2 className="w-3.5 h-3.5" />
+                  </div>
 
                   {/* Price Tag Overlay */}
                   <div className="absolute bottom-3 left-4 inline-flex items-center px-3 py-1 bg-brand-black/90 backdrop-blur-md border border-brand-rose/30 text-brand-rose font-semibold tracking-wider text-sm">
@@ -90,23 +102,6 @@ export default function ServicesList() {
                   {service.description}
                 </p>
 
-                {/* Features List */}
-                {service.features && service.features.length > 0 && (
-                  <div className="border-t border-brand-rose/10 pt-5 mb-8 flex-grow">
-                    <p className="text-[10px] tracking-[0.15em] text-brand-nude/50 uppercase font-bold mb-3">
-                      Diferenciais do Procedimento:
-                    </p>
-                    <ul className="space-y-2.5">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs text-brand-nude/80 font-light">
-                          <Check className="w-3.5 h-3.5 text-brand-rose shrink-0 mt-0.5" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
                 {/* Direct Action Link with custom message */}
                 <motion.a
                   whileHover={{ scale: 1.01 }}
@@ -123,21 +118,70 @@ export default function ServicesList() {
             </motion.div>
           ))}
         </div>
-
-        {/* Note / Callout below services */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mt-16 text-center border-t border-brand-rose/10 pt-8"
-        >
-          <p className="text-xs text-brand-nude/50 font-light tracking-wide italic">
-            * Valores e disponibilidades sujeitos a confirmação via WhatsApp. Manutenções recomendadas entre 15 a 21 dias para preservar o preenchimento e a saúde dos fios.
-          </p>
-        </motion.div>
-
       </div>
+
+      {/* Fullscreen Photo Modal with 100% Uncropped Image */}
+      <AnimatePresence>
+        {selectedPhoto && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedPhoto(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-2xl w-full bg-brand-black-light border border-brand-rose/40 rounded-sm overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between px-5 py-3 border-b border-brand-rose/20 bg-brand-black">
+                <div>
+                  <h4 className="font-serif text-lg text-white font-medium">{selectedPhoto.title}</h4>
+                  <p className="text-xs text-brand-rose font-semibold">
+                    {selectedPhoto.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedPhoto(null)}
+                  className="p-1.5 rounded-full hover:bg-brand-rose/20 text-brand-nude/70 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Real Full Image without any cropping */}
+              <div className="relative flex-1 overflow-auto bg-black flex items-center justify-center p-2">
+                <img
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.title}
+                  className="max-h-[70vh] w-auto object-contain rounded-sm shadow-md"
+                />
+              </div>
+
+              {/* Modal Footer CTA */}
+              <div className="p-4 border-t border-brand-rose/20 bg-brand-black flex flex-col sm:flex-row items-center justify-between gap-3">
+                <span className="text-xs text-brand-nude/60 font-light">
+                  Foto real do procedimento sem cortes
+                </span>
+                <a
+                  href={getWhatsAppLink(selectedPhoto.title, selectedPhoto.price)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-rose text-brand-black font-semibold text-xs uppercase tracking-wider hover:bg-white transition-colors"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Agendar este modelo</span>
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

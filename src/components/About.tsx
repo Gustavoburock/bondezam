@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Award, Shield, Sparkles, Heart } from 'lucide-react';
-import bondezanPhoto from '../assets/images/bondezan_portrait_1788710687286.jpg';
+import bondezanPhoto from '../assets/images/bianca_lash.jpeg';
 
 export default function About() {
   const whatsappLink = "https://wa.me/5511987797862?text=Olá%20Bondezan!%20Gostaria%20de%20tirar%20algumas%20dúvidas%20sobre%20as%20extensões%20de%20cílios.";

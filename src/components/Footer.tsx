@@ -92,8 +92,8 @@ export default function Footer() {
               <div className="flex gap-3 items-start text-sm font-light text-brand-nude/80">
                 <MapPin className="w-4 h-4 text-brand-rose shrink-0 mt-0.5" />
                 <span>
-                  Atendimento em São Paulo - SP <br />
-                  <span className="text-xs text-brand-nude/50">Estúdio Privativo de Alto Padrão</span>
+                  Atendimento em Embu das Artes - SP <br />
+                  <span className="text-xs text-brand-nude/50">Rua Flamengo, 03 - Jardim Ângela</span>
                 </span>
               </div>
               

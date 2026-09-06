@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Sparkles, Calendar, Heart, ShieldCheck, Star } from 'lucide-react';
-import bondezanHeroPhoto from '../assets/images/bondezan_reference_hero_1788711109757.jpg';
+import bondezanHeroPhoto from '../assets/images/bianca_lash.jpeg';
 
 export default function Hero() {
   const whatsappLink = "https://wa.me/5511987797862?text=Olá%20Bondezan!%20Gostaria%20de%20agendar%20um%20horário%20para%20extensão%20de%20cílios.";
@@ -141,7 +141,7 @@ export default function Hero() {
           {/* Microcopy & Scarcity */}
           <div className="flex items-center gap-2 text-[11px] text-brand-rose/90 font-medium tracking-wide">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Atendimento VIP individualizado • Poucas vagas por semana</span>
+            <span>Atendimento somente com hora marcada</span>
           </div>
         </motion.div>
 

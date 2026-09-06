@@ -8,7 +8,7 @@ export const SERVICES: Service[] = [
     description: 'Volume equilibrado, com acabamento elegante e natural. Ideal para quem deseja realçar o olhar sem perder a leveza.',
     badge: 'Mais pedido para o dia a dia',
     imageAlt: 'Extensão de Cílios com Volume Brasileiro',
-    imageSrc: '/volume_brasileiro_1788710726823.jpg',
+    imageSrc: '/volume_brasileiro.png',
     features: [
       'Resultado personalizado conforme o formato dos olhos',
       'Manutenção recomendada a cada 15 a 20 dias',
@@ -22,7 +22,7 @@ export const SERVICES: Service[] = [
     price: 130.00,
     description: 'Volume delicado e sofisticado, criando mais preenchimento e definição sem pesar no olhar.',
     imageAlt: 'Extensão de Cílios com Volume 3D',
-    imageSrc: '/volume_brasileiro_1788710726823.jpg',
+    imageSrc: '/volume_3d.png',
     features: [
       'Preenchimento estratégico dos fios',
       'Efeito marcante porém incrivelmente delicado',
@@ -37,7 +37,7 @@ export const SERVICES: Service[] = [
     description: 'Efeito leve e moderno, com acabamento suave e sofisticado para um olhar iluminado.',
     badge: 'Lançamento Exclusivo',
     imageAlt: 'Extensão de Cílios com Volume Aura',
-    imageSrc: '/volume_luxo_1788710765360.jpg',
+    imageSrc: '/volume_aura.png',
     features: [
       'Efeito de olhar iluminado e vívido',
       'Técnica moderna de acoplagem segura',
@@ -52,7 +52,7 @@ export const SERVICES: Service[] = [
     description: 'Mais intensidade e glamour para quem ama um olhar marcante, cheio e sofisticado.',
     badge: 'Máximo Glamour',
     imageAlt: 'Extensão de Cílios com Volume Luxo',
-    imageSrc: '/volume_luxo_1788710765360.jpg',
+    imageSrc: '/volume_luxo.png',
     features: [
       'Densidade e cor preta profunda',
       'Efeito rímel marcante sem agredir os fios',
@@ -67,7 +67,7 @@ export const SERVICES: Service[] = [
     description: 'Mapeamento alongado que cria um efeito mais puxado e poderoso, valorizando o formato dos olhos.',
     badge: 'Efeito Fox Eyes',
     imageAlt: 'Extensão de Cílios com Volume Fox',
-    imageSrc: '/volume_fox_1788710746901.jpg',
+    imageSrc: '/volume_fox.png',
     features: [
       'Olhar gateado, sensual e expressivo',
       'Modelagem direcionada no canto externo',
@@ -81,7 +81,7 @@ export const SERVICES: Service[] = [
     price: 140.00,
     description: 'Para quem busca bastante presença e preenchimento, mantendo conforto e acabamento bem definido.',
     imageAlt: 'Extensão de Cílios com Mega Brasileiro',
-    imageSrc: '/volume_brasileiro_1788710726823.jpg',
+    imageSrc: '/mega_brasileiro.png',
     features: [
       'Presença marcante e preenchimento denso',
       'Conforto adaptado para uso prolongado',
@@ -156,7 +156,7 @@ export const FAQS = [
   },
   {
     question: 'De quanto em quanto tempo devo fazer a manutenção?',
-    answer: 'Recomendamos a manutenção a cada 15 a 21 dias. Nesse período, removemos as extensões que cresceram ou estão desalinhadas e preenchemos os novos fios em fase de crescimento.'
+    answer: 'A manutenção tradicional é recomendada a cada 15 a 21 dias, garantindo que o olhar permaneça preenchido e alinhado. Para quem busca maior durabilidade, o método Capping pode prolongar o resultado por mais de 30 dias, conforme o ciclo natural dos seus fios.'
   },
   {
     question: 'Posso usar rímel ou molhar os cílios?',
