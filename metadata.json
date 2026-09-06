@@ -1,0 +1,6 @@
+{
+  "name": "Bondezan Lash Designer",
+  "description": "Landing page de alta conversão para Bondezan Lash Designer, transmitindo sofisticação, delicadeza e atendimento premium especializado em extensão de cílios de alto padrão.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
