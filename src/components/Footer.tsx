@@ -79,6 +79,23 @@ export default function Footer() {
                   Depoimentos
                 </a>
               </li>
+              <li>
+                <a 
+                  href="/curso" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.history.pushState({}, '', '/curso');
+                    window.dispatchEvent(new PopStateEvent('popstate'));
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                  }}
+                  className="text-brand-rose font-semibold hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <Sparkles className="w-3 h-3" />
+                  <span>Curso de Formação</span>
+                </a>
+              </li>
             </ul>
           </div>
 

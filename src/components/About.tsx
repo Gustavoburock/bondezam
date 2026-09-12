@@ -81,8 +81,8 @@ export default function About() {
               </div>
             </div>
 
-            {/* Direct personal WhatsApp trigger */}
-            <div className="flex items-center">
+            {/* Direct personal WhatsApp trigger & Course Link */}
+            <div className="flex flex-wrap items-center gap-4">
               <motion.a
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -93,6 +93,22 @@ export default function About() {
               >
                 <span>Conversar com a Lash Designer</span>
               </motion.a>
+
+              <a
+                href="/curso"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState({}, '', '/curso');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo(0, 0);
+                  document.documentElement.scrollTop = 0;
+                  document.body.scrollTop = 0;
+                }}
+                className="inline-flex items-center gap-2 px-6 py-4 bg-brand-rose/10 hover:bg-brand-rose/20 text-white text-xs tracking-[0.15em] uppercase font-semibold border border-brand-rose/30 transition-colors"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-brand-rose" />
+                <span>Conhecer Curso de Formação</span>
+              </a>
             </div>
 
           </div>

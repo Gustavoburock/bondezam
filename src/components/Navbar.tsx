@@ -21,9 +21,20 @@ export default function Navbar() {
     { name: 'Sobre Mim', href: '#sobre' },
     { name: 'Depoimentos', href: '#depoimentos' },
     { name: 'FAQ', href: '#faq' },
+    { name: '✨ Curso VIP', href: '/curso', isSpecial: true },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/')) {
+      e.preventDefault();
+      window.history.pushState({}, '', href);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      setIsMobileMenuOpen(false);
+      return;
+    }
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
@@ -77,7 +88,11 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="text-xs tracking-[0.15em] uppercase text-brand-nude/70 hover:text-brand-rose transition-colors duration-200 font-medium relative py-1"
+                className={`text-xs tracking-[0.15em] uppercase transition-colors duration-200 font-medium relative py-1 ${
+                  (link as any).isSpecial 
+                    ? 'text-brand-rose font-bold px-3 py-1 bg-brand-rose/10 border border-brand-rose/30 hover:bg-brand-rose hover:text-brand-black'
+                    : 'text-brand-nude/70 hover:text-brand-rose'
+                }`}
               >
                 {link.name}
               </a>
